@@ -36,7 +36,7 @@ const Note = (function () {
       noteBody.innerHTML = this.body.replace(/\\n/g, "<br />")
       noteContainer.append(noteTitle)
       noteContainer.append(noteBody)
-      return 
+      return noteContainer
       // use this in console to append note for testing css
       // document.getElementById('note').append(noteContainer)
     }
