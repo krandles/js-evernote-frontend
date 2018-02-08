@@ -1,0 +1,22 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+#sidebar {
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  text-decoration: none !important;
+  grid-column: 1 / 3;
+}
+
+#note {
+  grid-column: 2 / 3;
+}
+
+a, a:link, a:visited, a:focus, a:hover, a:active {
+  text-decoration: none;
+}
+
