@@ -12,6 +12,7 @@ const App = (function () {
       .then(notes => {
         notes.forEach(function (notesJSON) {
           let note = new Note(notesJSON)
+          
           notesContainer.appendChild(note.render())
         })
       } );

@@ -15,7 +15,8 @@ const Note = (function () {
       // let noteListUrl = `#`
       // noteListLink.href = noteListUrl
       // let noteListText = document.createTextNode(this.title)
-      noteListItem.innerHTML = `<a href="#" data-id=${this.id} on-click="${this.renderNote()}">${this.title}</a>`
+      noteListItem.innerHTML = `<a href="#" data-id=${this.id}>${this.title}</a>`
+      noteListItem.addEventListener("click", this.renderNote.bind(this))
       // noteListLink.append(noteListText)
       // noteListItem.append(noteListLink)
       return noteListItem
@@ -26,22 +27,29 @@ const Note = (function () {
     }
 
     renderNoteHTML() {
-      debugger
+      // let note = allNotes.filter(function(n) {
+      //   return n.id == id
+      // })
+      // debugger
       let noteContainer = document.createElement('div')
       let noteTitle = document.createElement('h3')
       let noteBody = document.createElement('p')
       let noteTitleText = document.createTextNode(this.title)
+      // debugger
       // let noteBodyText = document.createTextNode(this.body)
       noteTitle.append(noteTitleText)
       noteBody.innerHTML = this.body.replace(/\\n/g, "<br />")
       noteContainer.append(noteTitle)
       noteContainer.append(noteBody)
+      let noteDiv = document.getElementById('note')
+      noteDiv.innerHTML = ""
+      noteDiv.append(noteContainer)
       return noteContainer
       // use this in console to append note for testing css
-      // document.getElementById('note').append(noteContainer)
     }
 
     renderNote() {
+      // debugger
       return this.renderNoteHTML()
     }
   }
