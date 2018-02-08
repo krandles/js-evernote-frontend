@@ -5,6 +5,16 @@
   grid-auto-rows: minmax(100px, auto);
 }
 
+#new-note-title {
+  height: 25%;
+  width: 100%
+}
+
+#new-note-body {
+  height: 60px;
+  width: 100%;
+}
+
 #notes-list {
   font-family: 'Lato', sans-serif;
   font-size: 20px;
@@ -16,6 +26,23 @@
 #note {
   grid-column: 2 / 4;
   grid-row-start: 2;
+}
+
+#note-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  border-style: none;
+}
+
+#note-body {
+  font-family: 'Lato', sans-serif;
+  font-size: 22px;
+  border-style: none;
+  padding: none;
+  width: 80%;
+  height: 240px;
+  white-space: pre-wrap;
 }
 
 p {

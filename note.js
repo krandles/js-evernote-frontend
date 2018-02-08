@@ -16,7 +16,7 @@ const Note = (function () {
       // noteListLink.href = noteListUrl
       // let noteListText = document.createTextNode(this.title)
       noteListItem.innerHTML = `<a href="#" data-id=${this.id}>${this.title}</a>`
-      noteListItem.addEventListener("click", this.renderNote.bind(this))
+      noteListItem.addEventListener("click", (event) => { this.renderNoteForm() })
       // noteListLink.append(noteListText)
       // noteListItem.append(noteListLink)
       return noteListItem
@@ -46,6 +46,37 @@ const Note = (function () {
       noteDiv.append(noteContainer)
       return noteContainer
       // use this in console to append note for testing css
+    }
+
+    renderNoteForm() {
+      let noteContainer = document.createElement('div')
+      let noteBodyText = this.body.replace(/\\n/g, "&#13;&#10;")
+      let noteForm = `<form id="edit-note-form" data-id="${this.id}" action="">
+                        <input id="note-title" type="text" value="${this.title}"><br>
+                        <textarea id="note-body">${noteBodyText}</textarea><br>
+                        <input id="note-save" type="submit" value="Save">
+                        <input id="note-delete" type="submit" value="Delete">
+                      </form>`
+      noteContainer.innerHTML = noteForm
+      let noteDiv = document.getElementById('note')
+      noteDiv.innerHTML = ""
+      noteDiv.append(noteContainer)
+      let saveButton = document.getElementById('note-save')
+      let deleteButton = document.getElementById('note-delete')              
+      saveButton.addEventListener("click", (event) => {
+        let newTitle = document.getElementById("note-title").value
+        let newBody = document.getElementById("note-body").innerText
+        NoteApi.updateNote(this.id, newTitle, newBody)
+        })
+      deleteButton.addEventListener("click", (event) => { 
+        let noteId = this.id
+        NoteApi.deleteNote(noteId)
+        noteDiv.innerHTML = ""
+        let listItem = document.querySelector(`[data-id="${noteId}"]`).parentNode
+        debugger
+        listItem.parentNode.removeChild(listItem)
+        })
+      return noteContainer
     }
 
     renderNote() {
