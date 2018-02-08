@@ -3,7 +3,7 @@ const App = (function () {
     static init() {
       this.renderNotes();
       let form = document.getElementById("new-note-form");
-      form.addEventListener("submit", this.handleSubmit())
+      form.addEventListener("submit", this.handleSubmit)
     };
 
     static renderNotes() {
@@ -20,8 +20,10 @@ const App = (function () {
 
     static handleSubmit(event) {
       event.preventDefault();
-      let formInput = document.getElementById("new-note-form")
-      NoteAPI.createNote(formInput.value)
+      let titleInput = document.getElementById("new-note-title")
+      let bodyInput = document.getElementById("new-note-body")
+      // debugger
+      NoteApi.createNote(titleInput.value, bodyInput.value, 1)
       .then(json => {
         let notesContainer = document.getElementById("notes-list")
         let note = new Note(json)
